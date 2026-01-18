@@ -14,6 +14,10 @@ local colors = {
   yellow = { hex = "ffff00d1", order = "15" },
 }
 
+local space_tech = data.raw["technology"]["aai-se-space-loader"] and "se-space-mdrn-loader" or "space-mdrn-loader"
+local deep_space_tech = data.raw["technology"]["aai-se-deep-space-loader"] and "se-deep-space-mdrn-loader" or "deep-space-mdrn-loader"
+local fast_tech = data.raw["technology"]["aai-fast-loader"] and "aai-fast-loader" or "fast-mdrn-loader"
+
 -- Space loader
 templates.loaders = {
   ["space-"] = {
@@ -23,8 +27,8 @@ templates.loaders = {
     tint = util.color(colors.white.hex),
     unlocked_by = startup_settings["mdrn-unlock-technology"].value == "belt"
       and "se-space-transport-belt"
-      or "space-mdrn-loader",
-    prerequisite_techs = { "se-space-belt", "fast-mdrn-loader" },
+      or space_tech,
+    prerequisite_techs = { "se-space-belt", fast_tech },
     recipe_data = {
       ingredients = {
         { type = "item", name = "se-space-transport-belt", amount = 1 },
@@ -74,11 +78,11 @@ for name, color in pairs(colors) do
       name = "deep-space-mdrn-loader-" .. name,
       unlocked_by = startup_settings["mdrn-unlock-technology"].value == "belt"
         and "se-deep-space-transport-belt"
-        or "deep-space-mdrn-loader",
+        or deep_space_tech,
       order = color.order,
       tint = util.color(color.hex),
       dark_frame = true,
-      prerequisite_techs = { "se-deep-space-transport-belt", "space-mdrn-loader" },
+      prerequisite_techs = { "se-deep-space-transport-belt", space_tech },
       recipe_data = name == "black" and rd_black or rd_color,
     }
   end
@@ -106,6 +110,7 @@ or startup_settings["mdrn-enable-chute"].value then
 
   if startup_settings["mdrn-enable-chute"].value then
     templates.loaders["chute-"] = {
+      no_tech = true,
       subgroup = "belt-loader-special",
     }
   end
@@ -117,8 +122,10 @@ MdrnLoaders.make_modern_loaders(templates)
 for prefix, loader in pairs(templates.loaders) do
   if prefix ~= "chute-" then
     local name = loader.name or (prefix .. "mdrn-loader")
----@diagnostic disable-next-line: inject-field
+    ---@diagnostic disable-next-line: inject-field
     data.raw["loader-1x1"][name].se_allow_in_space = true
+    ---@diagnostic disable-next-line: inject-field
+    data.raw["loader-1x1"][name .. "-split"].se_allow_in_space = true
   end
 end
 
@@ -212,10 +219,11 @@ if mods["Krastorio2"] then
       },
     }
   }
+  MdrnLoaders.make_modern_loaders(templates)
 end
 
-MdrnLoaders.make_modern_loaders(templates)
 
 -- You cannot upgrade from a land restricted loader to a space capable loader. Collision masks must match.
 -- The stack loader is set to work on space platforms.  Perhaps there should be a separate land stack loader.
 data.raw["loader-1x1"]["express-mdrn-loader"].next_upgrade = nil
+data.raw["loader-1x1"]["express-mdrn-loader-split"].next_upgrade = nil

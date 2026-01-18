@@ -12,7 +12,7 @@
         "base >= 2.0.60",
         "flib >= 0.16.2",
         "loaders-modernized >= 1.0.5",
-        "space-exploration >= 0.7.0"
+        "space-exploration >= 0.7.41"
     ],
     "package": {
         "git_publish_branch": "main",
