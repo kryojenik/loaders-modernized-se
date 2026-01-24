@@ -4,3 +4,4 @@ Date: ????
   Features:
     - Initial release
     - Add space and deep space loaders to Space Exploration.
+    - Supports popular mod combination K2SE
