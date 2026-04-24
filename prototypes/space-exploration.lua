@@ -1,5 +1,7 @@
 local utils = require("__space-exploration__.data_util")
 local const = require("constants")
+local C     = require("__loaders-modernized__.constants")
+local cfg   = require("__loaders-modernized__.prototypes.settings-cache")
 -- Define the loader template for the tier 5 turbo belt
 local startup_settings = settings.startup
 
@@ -7,11 +9,11 @@ local startup_settings = settings.startup
 ---@type table<string, LMLoaderTemplate>
 local loaders = {
   ["space-"] = {
-    next_upgrade = "deep-space-mdrn-loader-black",
+    next_upgrade = "mdrn-deep-space-loader-black",
     underground_name = "se-space-underground-belt",
     order = "07",
     tint = util.color(const.colors.white.hex),
-    prerequisite_techs = { "se-space-belt", "fast-mdrn-loader" },
+    prerequisite_techs = { "se-space-belt", "mdrn-fast-loader" },
     recipe_data = {
       ingredients = {
         { type = "item", name = "se-space-transport-belt", amount = 1 },
@@ -48,7 +50,7 @@ local rd_black = {
 }
 local rd_color = {
   ingredients = {
-    { type = "item", name = "deep-space-mdrn-loader-black", amount = 1 },
+    { type = "item", name = "mdrn-deep-space-loader-black", amount = 1 },
     { type = "item", name = "small-lamp", amount = 1 }
   }
 }
@@ -58,23 +60,23 @@ for name, color in pairs(const.colors) do
   if name == "black" or (color_enabled and color_enabled.value) then
     loaders["deep-space-" .. name] = {
       underground_name = "se-deep-space-underground-belt-" .. name,
-      name = "deep-space-mdrn-loader-" .. name,
-      unlocked_by = startup_settings["mdrn-unlock-technology"].value == "belt"
+      name = "mdrn-deep-space-loader-" .. name,
+      unlocked_by = cfg.unlock_technology == C.UNLOCK_TECH.BELT
         and "se-deep-space-transport-belt"
-        or "deep-space-mdrn-loader",
+        or "mdrn-deep-space-loader",
       order = color.order,
       tint = util.color(color.hex),
       tech_tint = name == "black",
       dark_frame = true,
-      prerequisite_techs = { "se-deep-space-transport-belt", "space-mdrn-loader" },
+      prerequisite_techs = { "se-deep-space-transport-belt", "mdrn-space-loader" },
       recipe_data = name == "black" and rd_black or rd_color,
     }
   end
 end
 
 -- If using special stack or chute loaders with SE, clean up a few things
-if startup_settings["mdrn-enable-stacking"].value == "stack-tier"
-or startup_settings["mdrn-enable-chute"].value then
+if cfg.stacking == C.STACKING.STACK_TIER
+or cfg.chute_mode ~= C.CHUTE.NONE then
   data:extend{
     {
         type = "item-subgroup",
@@ -84,7 +86,7 @@ or startup_settings["mdrn-enable-chute"].value then
     }
   }
 
-  if startup_settings["mdrn-enable-stacking"].value == "stack-tier" then
+  if cfg.stacking == C.STACKING.STACK_TIER then
     loaders["stack-"] = {
       tint = util.color("fc792fd1"),
       subgroup = "belt-loader-special",
@@ -92,7 +94,7 @@ or startup_settings["mdrn-enable-chute"].value then
     }
   end
 
-  if startup_settings["mdrn-enable-chute"].value then
+  if cfg.chute_mode ~= C.CHUTE.NONE then
     loaders["chute-"] = {
       tech_data = false,
       subgroup = "belt-loader-special",
@@ -104,14 +106,13 @@ MdrnLoaders.add_loaders(loaders)
 
 -- Add science packs to techs to make them fit more thematically with Space Exploration
 utils.tech_add_ingredients("mdrn-loader", {"logistic-science-pack"})
-utils.tech_add_ingredients("fast-mdrn-loader", {"chemical-science-pack"})
-utils.tech_add_ingredients("space-mdrn-loader", {"space-science-pack"})
+utils.tech_add_ingredients("mdrn-fast-loader", {"chemical-science-pack"})
+utils.tech_add_ingredients("mdrn-space-loader", {"space-science-pack"})
 
 -- Make sure our new SE loaders can be placed on space platforms
-for prefix, loader in pairs(loaders) do
-  if prefix ~= "chute-" then
-    local name = loader.name or (prefix .. "mdrn-loader")
-    ---@diagnostic disable: inject-field
+for tier, loader in pairs(loaders) do
+  if tier ~= "chute-" then
+    local name = loader.name or ("mdrn-" .. tier .. "loader")
     data.raw["loader-1x1"][name].se_allow_in_space = true
     data.raw["loader-1x1"][name .. "-split"].se_allow_in_space = true
     ---@diagnostic enable: inject-field
@@ -120,5 +121,5 @@ end
 
 -- You cannot upgrade from a land restricted loader to a space capable loader. Collision masks must match.
 -- The stack loader is set to work on space platforms.  Perhaps there should be a separate land stack loader.
-data.raw["loader-1x1"]["express-mdrn-loader"].next_upgrade = nil
-data.raw["loader-1x1"]["express-mdrn-loader-split"].next_upgrade = nil
+data.raw["loader-1x1"]["mdrn-express-loader"].next_upgrade = nil
+data.raw["loader-1x1"]["mdrn-express-loader-split"].next_upgrade = nil

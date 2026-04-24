@@ -1,0 +1,48 @@
+{
+  "entity": [
+    ["space-mdrn-loader",                    "mdrn-space-loader"],
+    ["space-mdrn-loader-split",              "mdrn-space-loader-split"],
+    ["deep-space-mdrn-loader-black",         "mdrn-deep-space-loader-black"],
+    ["deep-space-mdrn-loader-black-split",   "mdrn-deep-space-loader-black-split"],
+    ["deep-space-mdrn-loader-blue",          "mdrn-deep-space-loader-blue"],
+    ["deep-space-mdrn-loader-blue-split",    "mdrn-deep-space-loader-blue-split"],
+    ["deep-space-mdrn-loader-cyan",          "mdrn-deep-space-loader-cyan"],
+    ["deep-space-mdrn-loader-cyan-split",    "mdrn-deep-space-loader-cyan-split"],
+    ["deep-space-mdrn-loader-green",         "mdrn-deep-space-loader-green"],
+    ["deep-space-mdrn-loader-green-split",   "mdrn-deep-space-loader-green-split"],
+    ["deep-space-mdrn-loader-magenta",       "mdrn-deep-space-loader-magenta"],
+    ["deep-space-mdrn-loader-magenta-split", "mdrn-deep-space-loader-magenta-split"],
+    ["deep-space-mdrn-loader-red",           "mdrn-deep-space-loader-red"],
+    ["deep-space-mdrn-loader-red-split",     "mdrn-deep-space-loader-red-split"],
+    ["deep-space-mdrn-loader-white",         "mdrn-deep-space-loader-white"],
+    ["deep-space-mdrn-loader-white-split",   "mdrn-deep-space-loader-white-split"],
+    ["deep-space-mdrn-loader-yellow",        "mdrn-deep-space-loader-yellow"],
+    ["deep-space-mdrn-loader-yellow-split",  "mdrn-deep-space-loader-yellow-split"]
+  ],
+  "item": [
+    ["space-mdrn-loader",            "mdrn-space-loader"],
+    ["deep-space-mdrn-loader-black", "mdrn-deep-space-loader-black"],
+    ["deep-space-mdrn-loader-blue",  "mdrn-deep-space-loader-blue"],
+    ["deep-space-mdrn-loader-cyan",  "mdrn-deep-space-loader-cyan"],
+    ["deep-space-mdrn-loader-green", "mdrn-deep-space-loader-green"],
+    ["deep-space-mdrn-loader-magenta","mdrn-deep-space-loader-magenta"],
+    ["deep-space-mdrn-loader-red",   "mdrn-deep-space-loader-red"],
+    ["deep-space-mdrn-loader-white", "mdrn-deep-space-loader-white"],
+    ["deep-space-mdrn-loader-yellow","mdrn-deep-space-loader-yellow"]
+  ],
+  "recipe": [
+    ["space-mdrn-loader",            "mdrn-space-loader"],
+    ["deep-space-mdrn-loader-black", "mdrn-deep-space-loader-black"],
+    ["deep-space-mdrn-loader-blue",  "mdrn-deep-space-loader-blue"],
+    ["deep-space-mdrn-loader-cyan",  "mdrn-deep-space-loader-cyan"],
+    ["deep-space-mdrn-loader-green", "mdrn-deep-space-loader-green"],
+    ["deep-space-mdrn-loader-magenta","mdrn-deep-space-loader-magenta"],
+    ["deep-space-mdrn-loader-red",   "mdrn-deep-space-loader-red"],
+    ["deep-space-mdrn-loader-white", "mdrn-deep-space-loader-white"],
+    ["deep-space-mdrn-loader-yellow","mdrn-deep-space-loader-yellow"]
+  ],
+  "technology": [
+    ["space-mdrn-loader",      "mdrn-space-loader"],
+    ["deep-space-mdrn-loader", "mdrn-deep-space-loader"]
+  ]
+}

@@ -1,4 +1,4 @@
-local const = require("constants")
+local C = require("constants")
 local util = require("__loaders-modernized__.scripts.utils")
 
 if not mods["Krastorio2"] then
@@ -51,13 +51,13 @@ local loaders = {
         { type = "item", name = "electric-engine-unit", amount = 5 },
         { type = "item", name = "processing-unit", amount = 5 },
         { type = "item", name = "express-transport-belt", amount = 1 },
-        { type = "item", name = "fast-mdrn-loader", amount = 1 },
+        { type = "item", name = "mdrn-fast-loader", amount = 1 },
       },
       stack_ingredients = {
         { type = "item", name = "electric-engine-unit", amount = 10 },
         { type = "item", name = "processing-unit", amount = 10 },
         { type = "item", name = "express-transport-belt", amount = 1 },
-        { type = "item", name = "fast-mdrn-loader", amount = 1 },
+        { type = "item", name = "mdrn-fast-loader", amount = 1 },
       }
     },
   },
@@ -69,13 +69,13 @@ local loaders = {
         { type = "item", name = "kr-imersium-gear-wheel", amount = 5 },
         { type = "item", name = "kr-rare-metals", amount = 5 },
         { type = "item", name = "kr-advanced-transport-belt", amount = 1 },
-        { type = "item", name = "express-mdrn-loader", amount = 1 },
+        { type = "item", name = "mdrn-express-loader", amount = 1 },
       },
       stack_ingredients = {
         { type = "item", name = "kr-imersium-gear-wheel", amount = 10 },
         { type = "item", name = "kr-rare-metals", amount = 10 },
         { type = "item", name = "kr-advanced-transport-belt", amount = 1 },
-        { type = "item", name = "express-mdrn-loader", amount = 1 },
+        { type = "item", name = "mdrn-express-loader", amount = 1 },
       }
     },
   },
@@ -88,7 +88,7 @@ local loaders = {
         { type = "item", name = "se-heavy-bearing", amount = 5 },
         { type = "item", name = "kr-rare-metals", amount = 5 },
         { type = "item", name = "kr-superior-transport-belt", amount = 1 },
-        { type = "item", name = "advanced-mdrn-loader", amount = 1 },
+        { type = "item", name = "mdrn-advanced-loader", amount = 1 },
         { type = "item", name = "kr-imersium-plate", amount = 5 },
       },
       stack_ingredients = {
@@ -96,7 +96,7 @@ local loaders = {
         { type = "item", name = "se-heavy-bearing", amount = 10 },
         { type = "item", name = "kr-rare-metals", amount = 10 },
         { type = "item", name = "kr-superior-transport-belt", amount = 1 },
-        { type = "item", name = "advanced-mdrn-loader", amount = 1 },
+        { type = "item", name = "mdrn-advanced-loader", amount = 1 },
         { type = "item", name = "kr-imersium-plate", amount = 10 },
       }
     },
@@ -104,22 +104,22 @@ local loaders = {
 }
 
 if move_to_aai then
-  util.remove_recipe_from_effects("space-mdrn-loader")
-  util.add_recipe_to_effects("aai-se-space-loader", "space-mdrn-loader")
-  for color, _ in pairs(const.colors) do
-    util.remove_recipe_from_effects("deep-space-mdrn-loader-" .. color)
-    util.add_recipe_to_effects("aai-se-deep-space-loader", "deep-space-mdrn-loader-" .. color)
+  util.remove_recipe_from_effects("mdrn-space-loader")
+  util.add_recipe_to_effects("aai-se-space-loader", "mdrn-space-loader")
+  for color, _ in pairs(C.colors) do
+    util.remove_recipe_from_effects("mdrn-deep-space-loader-" .. color)
+    util.add_recipe_to_effects("aai-se-deep-space-loader", "mdrn-deep-space-loader-" .. color)
   end
 
 elseif pull_k2_to_mdrn then
   local k2_loaders = {
     ["kr-loader"] = "mdrn-loader",
-    ["kr-fast-loader"] = "fast-mdrn-loader",
-    ["kr-express-loader"] = "express-mdrn-loader",
-    ["kr-advanced-loader"] = "advanced-mdrn-loader",
-    ["kr-superior-loader"] = "superior-mdrn-loader",
-    ["kr-se-loader"] = "space-mdrn-loader",
-    ["kr-se-deep-space-loader-black"] = "deep-space-mdrn-loader"
+    ["kr-fast-loader"] = "mdrn-fast-loader",
+    ["kr-express-loader"] = "mdrn-express-loader",
+    ["kr-advanced-loader"] = "mdrn-advanced-loader",
+    ["kr-superior-loader"] = "mdrn-superior-loader",
+    ["kr-se-loader"] = "mdrn-space-loader",
+    ["kr-se-deep-space-loader-black"] = "mdrn-deep-space-loader-black"
   }
 
   for k2_loader, unlocked_by in pairs(k2_loaders) do
